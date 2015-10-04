@@ -18,7 +18,7 @@ class SolicitudDAO {
     }
     public function buscarSolicitudxId($id_solicitud) {
         
-        $solicitud = new Solicitud();
+        //$solicitud = new Solicitud();
         $sqltxt = "select * from solicitud where id_solicitud = ".$id_solicitud."";
         $stid = oci_parse($_SESSION['sesion_logueado'], $sqltxt);
         oci_execute($stid);
