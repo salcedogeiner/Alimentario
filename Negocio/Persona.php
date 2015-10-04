@@ -14,7 +14,7 @@ class Persona{
     private $tipo_persona;
     private $genero_persona;
     private $usuario_persona;
-    private $codigo_persona;
+    //private $codigo_persona;
     
     public function __construct() {
         
@@ -44,9 +44,9 @@ class Persona{
     public function getUsuario_persona() {
         return $this->usuario_persona;
     }
-  public function getCodigo_persona() {
+  /*public function getCodigo_persona() {
         return $this->codigo_persona;
-    }
+    }*/
     public function setDocumento_persona($documento_persona) {
         $this->documento_persona = $documento_persona;
         return $this;
@@ -77,10 +77,10 @@ class Persona{
         return $this;
     }
 
-     public function setCodigo_persona($codigo_persona) {
+    /* public function setCodigo_persona($codigo_persona) {
         $this->codigo_persona = $codigo_persona;
         return $this;
-    }
+    }*/
 
  
     

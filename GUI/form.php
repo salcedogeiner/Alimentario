@@ -58,7 +58,7 @@ and open the template in the editor.
                 echo '<h3 class="form-signin-heading"> Documento: '.$persona->getDocumento_persona().'</h3>';
                             ?></center></div>
                             <div class="col-sm-6"><center><?php 
-                echo '<h3 class="form-signin-heading"> Codigo: '.$persona->getCodigo_persona().'</h3>';
+                //echo '<h3 class="form-signin-heading"> Codigo: '.$persona->getCodigo_persona().'</h3>';
                             ?></center></div>
                             <div class="col-sm-6"><center><?php 
                 echo '<h3 class="form-signin-heading"> Sexo: '.$persona->getGenero_persona().'</h3>';

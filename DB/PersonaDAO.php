@@ -20,7 +20,7 @@ class PersonaDAO {
         $stid = oci_parse($_SESSION['sesion_logueado'], $sqltxt);
         oci_execute($stid);
         while(oci_fetch($stid)) {
-            $persona->setCodigo_persona(oci_result($stid, 'CODIGO'));
+            //$persona->setCodigo_persona(oci_result($stid, 'CODIGO'));
             $persona->setNombre_persona(oci_result($stid, 'NOMBRE_PER'));
             $persona->setApellido_persona(oci_result($stid, 'APELLIDO_PER'));
             $persona->setTipo_persona(oci_result($stid, 'TIPO'));

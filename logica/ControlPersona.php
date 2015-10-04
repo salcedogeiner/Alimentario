@@ -18,7 +18,7 @@ class ControlPersona{
     
     public function crearPersona($codigo_persona,$nombre_persona,$apellido_persona,$tipo_persona,$usuario,$genero,$documento){
         $this->persona = new Persona();
-        $this->persona->setCodigo_persona($codigo_persona);
+        //$this->persona->setCodigo_persona($codigo_persona);
         $this->persona->setNombre_persona($nombre_persona);
         $this->persona->setApellido_persona($apellido_persona);
         $this->persona->setTipo_persona($tipo_persona);
@@ -33,7 +33,7 @@ class ControlPersona{
     }
     public function modificarPersona($codigo_persona,$nombre_persona,$apellido_persona,$tipo_persona,$usuario,$genero,$documento){
         $this->persona = new Persona();
-        $this->persona->setCodigo_persona($codigo_persona);
+       // $this->persona->setCodigo_persona($codigo_persona);
         $this->persona->setNombre_persona($nombre_persona);
         $this->persona->setApellido_persona($apellido_persona);
         $this->persona->setTipo_persona($tipo_persona);
