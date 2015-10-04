@@ -20,7 +20,7 @@ class Condicion_SEDAO {
     
     public function crearCondicion_SE($condicion_SE){
         //$condicion_SE = new Condicion_SE();
-        $sqltxt="insert into condicion_SE values(2,".$condicion_SE->getId_tipo_condicion().",'".$condicion_SE->getNombre_condicion().
+        $sqltxt="insert into condicion_SE values(id_condicion_se.nextval,".$condicion_SE->getId_tipo_condicion().",'".$condicion_SE->getNombre_condicion().
                 "',".$condicion_SE->getPuntaje().")";
         $stid = oci_parse($_SESSION['sesion_logueado'],$sqltxt);
         oci_execute($stid);

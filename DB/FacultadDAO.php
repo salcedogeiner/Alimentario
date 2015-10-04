@@ -28,7 +28,7 @@ class FacultadDAO {
        //session_start();
         //$se=$conn->getConn();
         //echo $_SESSION['sesion_logueado'];
-        $sqltxt="insert into facultad values(3,'".$facultad->getNombre_facultad()."')";
+        $sqltxt="insert into facultad values(id_facultad.nextval,'".$facultad->getNombre_facultad()."')";
             $stid = oci_parse($_SESSION['sesion_logueado'],$sqltxt);
             oci_execute($stid);   
     }

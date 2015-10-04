@@ -24,7 +24,7 @@ class Tipo_condicionDAO{
     public function crearTipo_condicion($tipo_condicion){
         //$tipo_condicion=new Tipo_Condicion_SE();
         
-        $sqltxt="insert into Tipo_Condicion values(3,'".$tipo_condicion->getNombre_tipo_condicion()."')";
+        $sqltxt="insert into Tipo_Condicion values(id_tipo_condicion_se.nextval,'".$tipo_condicion->getNombre_tipo_condicion()."')";
             $stid = oci_parse($_SESSION['sesion_logueado'],$sqltxt);
             oci_execute($stid);           
     }
