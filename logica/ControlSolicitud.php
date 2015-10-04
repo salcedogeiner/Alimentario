@@ -14,12 +14,10 @@ class ControlSolicitud{
         $this->solicitudDAO=new SolicitudDAO();       
     }
     
-    function CrearSolicitud($codigo,$id_solicitud,$id_convocatoria,$id_facultad,$soportes_solicitud){
+    function CrearSolicitud($codigo,$id_convocatoria,$soportes_solicitud){
         $this->solicitud = new Solicitud();
         $this->solicitud->setCodigo_estudiante($codigo);
-        $this->solicitud->setId_solicitud($id_solicitud);
-        $this->solicitud->setId_convocatoria($id_convocatoria);
-        $this->solicitud->setId_facultad($id_facultad);
+         $this->solicitud->setId_convocatoria($id_convocatoria);
         $this->solicitud->setSoportes_solicitud($soportes_solicitud);
         $this->solicitudDAO->crearSolicitud($this->solicitud); 
     }
