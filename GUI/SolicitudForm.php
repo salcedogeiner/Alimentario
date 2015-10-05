@@ -72,9 +72,7 @@ include '../logica/ControlFacultad.php';
             $cSolicitud->CrearSolicitud($_POST['codigo'],$_POST['convocatoria'],$_POST['archivo1']);
             //echo $_POST['facultad'];
             //echo $_POST['cupos'];
-            //echo $_POST['periodo'];
-            //echo $_POST['fechaI'];
-            //echo $_POST['fechaF'];
+            
             
                       } 
         

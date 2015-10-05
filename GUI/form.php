@@ -98,6 +98,8 @@ and open the template in the editor.
  <?php
                                 //$tipo = new Tipo_Condicion_SE();
                                 //$contador=0;
+                                $tipo_cond=new ControlTipoCondicion_SE();
+                                $cond=new ControlCondicion_SE();
                                 foreach ($tipo_cond->verTipos_Condiciones() as $tipo) {
                                     echo '<div class="containerl2">';
                                     echo '<form id="form" method="post">';

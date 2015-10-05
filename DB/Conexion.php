@@ -51,10 +51,7 @@
             return $conex->_oLinkId; //Se devuelve el link a la conexion
         }
  
-        /**
-         * Realiza la conexion
-         * @return link para exito, o false
-         */
+       
         private function conectar() {
  
             $this->_oLinkId = null;
