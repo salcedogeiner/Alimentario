@@ -29,4 +29,21 @@ class ConvocatoriaDAO{
             $stid = oci_parse($_SESSION['sesion_logueado'],$sqltxt);
             oci_execute($stid); 
     }
+    public function buscarConvocatoriaxFacultad($id_facultad){
+        $convocatoria = new Convocatoria();
+        $sqltxt = "select * from convocatoria where id_facultad = '".$id_facultad."'";
+        $stid = oci_parse($_SESSION['sesion_logueado'], $sqltxt);
+        oci_execute($stid);
+        while(oci_fetch($stid)) {
+            //$persona->setCodigo_persona(oci_result($stid, 'CODIGO'));
+            $convocatoria->setId_convocatoria(oci_result($stid, 'ID_CONVOCATORIA'));
+            $convocatoria->setId_facultad(oci_result($stid, 'ID_FACULTAD'));
+            $convocatoria->setFecha_inicio(oci_result($stid, 'FECHA_INICIO'));
+            $convocatoria->setFecha_fin(oci_result($stid, 'FECHA_FIN'));
+            $convocatoria->setCupos(oci_result($stid, 'CUPOS'));            
+            $convocatoria->getPeriodo(oci_result($stid, 'PERIODO'));
+        }
+        //echo $persona->getApellido_persona();
+        return $convocatoria;
+    }
 }

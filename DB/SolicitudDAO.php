@@ -41,7 +41,6 @@ class SolicitudDAO {
         oci_execute($stid);
         while(oci_fetch($stid)) {
             $solicitud->setCodigo_estudiante(oci_result($stid, 'CODIGO'));
-            $solicitud->setId_solicitud(oci_result($stid, 'ID_SOLICITUD'));
             $solicitud->setId_convocatoria(oci_result($stid, 'ID_CONVOCATORIA'));
             $solicitud->setId_facultad(oci_result($stid, 'ID_FACULTAD'));
             $solicitud->setSoportes_solicitud(oci_result($stid, 'SOPORTES'));
@@ -50,11 +49,25 @@ class SolicitudDAO {
         return $solicitud;
     }
     
+    
+    
     public function CrearSolicitud($solicitud) {
-         $sqltxt="insert into solicitud values(".$solicitud->getCodigo_estudiante().",".$solicitud->getId_solicitud().",".$solicitud->getId_convocatoria().",".$solicitud->getId_facultad().",".$solicitud->getSoportes_solicitud().")";
-         $stid = oci_parse($_SESSION['sesion_logueado'], $sqltxt);
-         oci_execute($stid);
-         
+         $st= oci_parse($_SESSION['sesion_logueado'], 'INSERT INTO solicitud (CODIGO_EST, ID_CONVOCATORIA,SOPORTES)VALUES (:CODIGO_EST,:ID_CONVOCATORIA,empty_blob())RETURNING SOPORTES INTO :SOPORTES');
+         //inicializamos una variable de tipo blob
+         $blob=oci_new_descriptor($_SESSION['sesion_logueado'], OCI_D_LOB);
+  
+        //vinculamos los parametros con las variables
+        oci_bind_by_name($st, ":CODIGO_EST", $solicitud->getCodigo_estudiante());
+        oci_bind_by_name($st, ":ID_CONVOCATORIA", $solicitud->getId_convocatoria());
+        oci_bind_by_name($st, ":SOPORTES", $blob, -1, OCI_B_BLOB);
+  
+         //ejecutamos el statement sin hacer commit
+        oci_execute($st, OCI_NO_AUTO_COMMIT);
+        $blob->save($solicitud->getSoportes_solicitud()); //guardamos el archivo como binario
+  
+        oci_commit($_SESSION['sesion_logueado']); //ejecutamos el commit
+         $blob->free();
+        
     }
     
      public function modificarSolicitud($solicitud) {

@@ -8,6 +8,7 @@ include '../logica/ControlTipoCondicion_SE.php';
 include '../logica/ControlCondicion_SE.php';
 include '../logica/ControlSolicitud.php';
 include '../logica/ControlConvocatoria.php';
+include '../logica/ControlEstudiante.php';
 ?>
 
 <!DOCTYPE html>

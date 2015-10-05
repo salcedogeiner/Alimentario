@@ -32,6 +32,8 @@ class PersonaDAO {
         return $persona;
     }
     
+ 
+    
     public function crearPersona($persona) {
          $sqltxt="insert into persona values(".$persona->getCodigo_persona().",'".$persona->getNombre_persona()."','".$persona->getApellido_persona()."','".$persona->getTipo_persona()."','".$persona->getUsuario_persona()."','".$persona->getGenero_persona()."',".$persona->getDocumento_persona().")";
          $stid = oci_parse($_SESSION['sesion_logueado'], $sqltxt);
