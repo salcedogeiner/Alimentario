@@ -16,7 +16,7 @@ class PersonaDAO {
     public function buscarPersonaxUsuario($usuario) {
         
         $persona = new Persona();
-        $sqltxt = "select * from persona where usuario = '".$usuario."'";
+        $sqltxt = "select * from s_persona where usuario = '".$usuario."'";
         $stid = oci_parse($_SESSION['sesion_logueado'], $sqltxt);
         oci_execute($stid);
         while(oci_fetch($stid)) {
@@ -35,14 +35,14 @@ class PersonaDAO {
  
     
     public function crearPersona($persona) {
-         $sqltxt="insert into persona values(".$persona->getCodigo_persona().",'".$persona->getNombre_persona()."','".$persona->getApellido_persona()."','".$persona->getTipo_persona()."','".$persona->getUsuario_persona()."','".$persona->getGenero_persona()."',".$persona->getDocumento_persona().")";
+         $sqltxt="insert into s_persona values(".$persona->getCodigo_persona().",'".$persona->getNombre_persona()."','".$persona->getApellido_persona()."','".$persona->getTipo_persona()."','".$persona->getUsuario_persona()."','".$persona->getGenero_persona()."',".$persona->getDocumento_persona().")";
          $stid = oci_parse($_SESSION['sesion_logueado'], $sqltxt);
          oci_execute($stid);
          
     }
     
      public function modificarPersona($persona) {
-        $sqltxt="update persona set nombre_per='".$persona->getNombre_persona()."',apellido_per='".$persona->getApellido_persona()."',tipo='".$persona->getTipo_persona()."',usuario='".$persona->getUsuario_persona()."',genero='".$persona->getGenero_persona()."',documento=".$persona->getDocumento_persona()." where codigo=".$persona->getCodigo_persona()."";
+        $sqltxt="update s_persona set nombre_per='".$persona->getNombre_persona()."',apellido_per='".$persona->getApellido_persona()."',tipo='".$persona->getTipo_persona()."',usuario='".$persona->getUsuario_persona()."',genero='".$persona->getGenero_persona()."',documento=".$persona->getDocumento_persona()." where codigo=".$persona->getCodigo_persona()."";
         $stid = oci_parse($_SESSION['sesion_logueado'], $sqltxt);
         oci_execute($stid);
     }

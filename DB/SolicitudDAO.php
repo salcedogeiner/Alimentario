@@ -19,7 +19,7 @@ class SolicitudDAO {
     public function buscarSolicitudxId($id_solicitud) {
         
         $solicitud = new Solicitud();
-        $sqltxt = "select * from solicitud where id_solicitud = ".$id_solicitud."";
+        $sqltxt = "select * from s_solicitud where id_solicitud = ".$id_solicitud."";
         $stid = oci_parse($_SESSION['sesion_logueado'], $sqltxt);
         oci_execute($stid);
         while(oci_fetch($stid)) {
@@ -36,7 +36,7 @@ class SolicitudDAO {
     public function buscarSolicitudxFacultad($id_facultad) {
         
         $solicitud = new Solicitud();
-        $sqltxt = "select * from solicitud where id_facultad = ".$id_facultad."";
+        $sqltxt = "select * from s_solicitud where id_facultad = ".$id_facultad."";
         $stid = oci_parse($_SESSION['sesion_logueado'], $sqltxt);
         oci_execute($stid);
         while(oci_fetch($stid)) {
@@ -52,7 +52,7 @@ class SolicitudDAO {
     public function buscarSolicitudes(){
         $solicitudes=array();
         $i=0;
-        $sqltxt = "select * from solicitud";
+        $sqltxt = "select * from s_solicitud";
         $stid = oci_parse($_SESSION['sesion_logueado'], $sqltxt);
         oci_execute($stid);
         while(oci_fetch($stid)) {
@@ -69,7 +69,7 @@ class SolicitudDAO {
     
 
     public function CrearSolicitud($solicitud) {
-         $st= oci_parse($_SESSION['sesion_logueado'], 'INSERT INTO solicitud (CODIGO_EST, ID_CONVOCATORIA,SOPORTES)VALUES (:CODIGO_EST,:ID_CONVOCATORIA,empty_blob())RETURNING SOPORTES INTO :SOPORTES');
+         $st= oci_parse($_SESSION['sesion_logueado'], 'INSERT INTO s_solicitud (CODIGO_EST, ID_CONVOCATORIA,SOPORTES)VALUES (:CODIGO_EST,:ID_CONVOCATORIA,empty_blob())RETURNING SOPORTES INTO :SOPORTES');
          //inicializamos una variable de tipo blob
          $blob=oci_new_descriptor($_SESSION['sesion_logueado'], OCI_D_LOB);
   
@@ -88,13 +88,13 @@ class SolicitudDAO {
     }
     
      public function modificarSolicitud($solicitud) {
-        $sqltxt="update solicitud set codigo=".$solicitud->getCodigo_estudiante().",id_convocatoria=".$solicitud->getId_convocatoria().",id_facultad=".$solicitud->getId_facultad().",soportes=".$solicitud->getSoportes_solicitud()." where id_solicitud=".$solicitud->getId_solicitud()."";
+        $sqltxt="update s_solicitud set codigo=".$solicitud->getCodigo_estudiante().",id_convocatoria=".$solicitud->getId_convocatoria().",id_facultad=".$solicitud->getId_facultad().",soportes=".$solicitud->getSoportes_solicitud()." where id_solicitud=".$solicitud->getId_solicitud()."";
         $stid = oci_parse($_SESSION['sesion_logueado'], $sqltxt);
         oci_execute($stid);
     }
     
      public function eliminarSolicitud($id_solicitud) {
-        $sqltxt="delete FROM solicitud where id_solicitud=".$id_solicitud."";
+        $sqltxt="delete FROM s_solicitud where id_solicitud=".$id_solicitud."";
         $stid = oci_parse($_SESSION['sesion_logueado'], $sqltxt);
         oci_execute($stid);
     }

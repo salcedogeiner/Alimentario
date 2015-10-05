@@ -22,7 +22,7 @@ class CondicionxSolicitudDAO {
     public function crearCondicionxSolicitud($condicionxsolicitud){
         //$condicionxsolicitud=new CondicionxSolicitud();
         
-        $sqltxt="insert into CondicionxSolicitud values(".$condicionxsolicitud->getId_condicion().",'".$condicionxsolicitud->getCodigo_est()."',".
+        $sqltxt="insert into s_CondicionxSolicitud values(".$condicionxsolicitud->getId_condicion().",'".$condicionxsolicitud->getCodigo_est()."',".
                 $condicionxsolicitud->getId_convocatoria().",'".$condicionxsolicitud->getDescripcion()."')";
         echo $sqltxt;
         $stid = oci_parse($_SESSION['sesion_logueado'],$sqltxt);

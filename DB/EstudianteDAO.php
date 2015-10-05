@@ -21,7 +21,7 @@ class EstudianteDAO {
     public function buscarEstudiantexDocumento($documento) {
         
         $estudiante = new Estudiante();
-        $sqltxt = "select * from estudiante where documento = ".$documento."";
+        $sqltxt = "select * from s_estudiante where documento = ".$documento."";
         $stid = oci_parse($_SESSION['sesion_logueado'], $sqltxt);
         echo $sqltxt;
         oci_execute($stid);

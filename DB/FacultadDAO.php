@@ -28,19 +28,19 @@ class FacultadDAO {
        //session_start();
         //$se=$conn->getConn();
         //echo $_SESSION['sesion_logueado'];
-        $sqltxt="insert into facultad values(id_facultad.nextval,'".$facultad->getNombre_facultad()."')";
+        $sqltxt="insert into s_facultad values(id_facultad.nextval,'".$facultad->getNombre_facultad()."')";
             $stid = oci_parse($_SESSION['sesion_logueado'],$sqltxt);
             oci_execute($stid);   
     }
     public function eliminarFacultad($id_facultad){
-        $sqltxt="delete FROM facultad where id_facultad=".$id_facultad."";
+        $sqltxt="delete FROM s_facultad where id_facultad=".$id_facultad."";
         $stid = oci_parse($_SESSION['sesion_logueado'], $sqltxt);
         oci_execute($stid);
         
         
     }
     public function modificarFacultad($facultad){
-        $sqltxt="update facultad set nombre_facultad='".$facultad->getNombre_facultad()."' where id_facultad=".$facultad->getId_facultad()."";
+        $sqltxt="update s_facultad set nombre_facultad='".$facultad->getNombre_facultad()."' where id_facultad=".$facultad->getId_facultad()."";
         $stid = oci_parse($_SESSION['sesion_logueado'], $sqltxt);
         oci_execute($stid);
         
@@ -49,7 +49,7 @@ class FacultadDAO {
     
      public function buscarFacultad($id_facultad){
          $facultad = new Facultad();
-        $sqltxt = "select * from facultad where id_facultad = ".$id_facultad."";
+        $sqltxt = "select * from s_facultad where id_facultad = ".$id_facultad."";
         $stid = oci_parse($_SESSION['sesion_logueado'], $sqltxt);
         oci_execute($stid);
         while(oci_fetch($stid)) {
@@ -65,7 +65,7 @@ class FacultadDAO {
         $facultades = array();
         $i=0;
         //$facultades=new ArrayObject($array);
-        $sqltxt = "select * from facultad";
+        $sqltxt = "select * from s_facultad";
         $stid = oci_parse($_SESSION['sesion_logueado'], $sqltxt);
         oci_execute($stid);
         while(oci_fetch_array($stid)) {

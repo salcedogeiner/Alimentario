@@ -23,7 +23,7 @@ class ConvocatoriaDAO{
     public function crearConvocatoria($convocatoria){
         //$convocatoria=new Convocatoria();
             //echo $convocatoria->getId_facultad()."noadsno";
-             $sqltxt="insert into convocatoria values(id_convocatoria.nextval,".$convocatoria->getId_facultad().",TO_DATE('".$convocatoria->getFecha_inicio()."','yyyy-mm-dd'),TO_DATE('".
+             $sqltxt="insert into s_convocatoria values(id_convocatoria.nextval,".$convocatoria->getId_facultad().",TO_DATE('".$convocatoria->getFecha_inicio()."','yyyy-mm-dd'),TO_DATE('".
             $convocatoria->getFecha_fin()."','yyyy,mm,dd'),".$convocatoria->getCupos().",'".$convocatoria->getPeriodo()."')";
              echo $sqltxt;
             $stid = oci_parse($_SESSION['sesion_logueado'],$sqltxt);
@@ -31,7 +31,7 @@ class ConvocatoriaDAO{
     }
     public function buscarConvocatoriaxFacultad($id_facultad){
         $convocatoria = new Convocatoria();
-        $sqltxt = "select * from convocatoria where id_facultad =".$id_facultad." AND fecha_fin > sysdate";
+        $sqltxt = "select * from s_convocatoria where id_facultad =".$id_facultad." AND fecha_fin > sysdate";
         $stid = oci_parse($_SESSION['sesion_logueado'], $sqltxt);
         oci_execute($stid);
         while(oci_fetch($stid)) {
@@ -49,7 +49,7 @@ class ConvocatoriaDAO{
     public function verConvocatoriasActivas(){
         $convocatorias=array();
         $i=0;
-        $sqltxt = "select * from convocatoria where fecha_inicio< sysdate AND fecha_fin > sysdate";
+        $sqltxt = "select * from s_convocatoria where fecha_inicio< sysdate AND fecha_fin > sysdate";
         $stid = oci_parse($_SESSION['sesion_logueado'], $sqltxt);
         oci_execute($stid);
         while(oci_fetch($stid)) {
