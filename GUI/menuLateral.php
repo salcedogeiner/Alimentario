@@ -62,6 +62,13 @@
                         </a>
 
                     </li>
+                    <li class="lib">
+                        <a href="Solicitudes.php">
+                            <div class="barra"></div>
+                            <p class="menu">ver Solicitudes</p>
+                        </a>
+
+                    </li>
 
                     <li class="lib">
                         <div class="barra"></div>

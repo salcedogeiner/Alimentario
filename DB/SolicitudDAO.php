@@ -49,8 +49,25 @@ class SolicitudDAO {
         return $solicitud;
     }
     
+    public function buscarSolicitudes(){
+        $solicitudes=array();
+        $i=0;
+        $sqltxt = "select * from solicitud";
+        $stid = oci_parse($_SESSION['sesion_logueado'], $sqltxt);
+        oci_execute($stid);
+        while(oci_fetch($stid)) {
+            $solicitud = new Solicitud();
+            $solicitud->setCodigo_estudiante(oci_result($stid, 'CODIGO_EST'));
+            $solicitud->setId_convocatoria(oci_result($stid, 'ID_CONVOCATORIA'));            
+            $solicitud->setSoportes_solicitud(oci_result($stid, 'SOPORTES'));
+            $solicitudes[$i]=$solicitud;
+            $i+=1;
+        }  
+        return $solicitudes;
+    }
+
     
-    
+
     public function CrearSolicitud($solicitud) {
          $st= oci_parse($_SESSION['sesion_logueado'], 'INSERT INTO solicitud (CODIGO_EST, ID_CONVOCATORIA,SOPORTES)VALUES (:CODIGO_EST,:ID_CONVOCATORIA,empty_blob())RETURNING SOPORTES INTO :SOPORTES');
          //inicializamos una variable de tipo blob

@@ -30,6 +30,10 @@ class ControlSolicitud{
         return $this->solicitudDAO->buscarSolicitudxFacultad($id_facultad);      
     }
     
+    public function verSolicitudes(){
+        return $this->solicitudDAO->buscarSolicitudes();
+    }
+            
       function modificarSolicitud($codigo,$id_solicitud,$id_convocatoria,$id_facultad,$soportes_solicitud){
         $this->solicitud = new Solicitud();
         $this->solicitud->setCodigo_estudiante($codigo);
