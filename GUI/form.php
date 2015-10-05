@@ -9,6 +9,7 @@ include '../logica/ControlCondicion_SE.php';
 include '../logica/ControlSolicitud.php';
 include '../logica/ControlConvocatoria.php';
 include '../logica/ControlEstudiante.php';
+include '../logica/ControlCondicionxSolicitud.php';
 ?>
 
 <!DOCTYPE html>
@@ -64,6 +65,9 @@ and open the template in the editor.
                                     $cEstudiante = new ControlEstudiante();
                                     $estudiante = $cEstudiante->buscarEstudiantexDocumento($persona_documento);
                                     $estudiante_codigo = $estudiante->getCodigo_estudiante();
+                                    
+                                    $cCondicionxSolicitud=new ControlCondicionxSolicitud();
+                                    
                                     //echo $persona->getNombre_persona()." ".$persona->getApellido_persona(); //->getNombre_persona()." ".$persona->getTipo_persona();
                                     //echo $_SESSION['usuario_logueado'];
                                 }
@@ -92,18 +96,19 @@ and open the template in the editor.
                             <?php
                             if (isset($_POST['submit'])) {
                                 echo 'ALGO ESTA PASANDO???????????????????????????????????';
-                                
-                                foreach($_POST['seleccion'] as $sel){
-                                    
-                                        echo $sel;
-                                }
+                               
                                 //cho seleccion[];
                                 
-                                /* $archivo_temp = $_FILES['file']['tmp_name'];
+                                  $archivo_temp = $_FILES['file']['tmp_name'];
                                   $archivo_string = file_get_contents($archivo_temp);
+                                //echo $_POST['facultad']."aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
                                   $convocatoria=$cConvocatoria->buscarConvocatoriaxFacultad($_POST['facultad']);
                                   $convocatoria_id=$convocatoria->getId_convocatoria();
-                                  $cSolictud->CrearSolicitud($estudiante_codigo,$convocatoria_id,$archivo_string); */
+                                  $cSolictud->CrearSolicitud($estudiante_codigo,$convocatoria_id,$archivo_string);
+                                 foreach($_POST['seleccion'] as $sel){
+                                        echo $sel;
+                                        $cCondicionxSolicitud->crearCondicionxSolicitud($estudiante_codigo,$sel, $convocatoria_id,"na");
+                                }
                             }
                             ?>
                             
@@ -149,13 +154,13 @@ and open the template in the editor.
                             <div class="container" >
                                 <br>
                                 <select id="subject" name="facultad" class="form-control" required="required">
-<?php
-//->verFacultades();
-//$fa=new Facultad();
-foreach ($cFacultad->verFacultades() as $fa) {
-    echo '<option value="' . $fa->getId_facultad() . '">' . $fa->getNombre_facultad() . '</option>';
-}
-?> 
+                                <?php
+                                //->verFacultades();
+                                //$fa=new Facultad();
+                                foreach ($cFacultad->verFacultades() as $fa) {
+                                    echo '<option value="' . $fa->getId_facultad() . '">' . $fa->getNombre_facultad() . '</option>';
+                                }
+                                ?> 
                                 </select>
                                 <br>
 

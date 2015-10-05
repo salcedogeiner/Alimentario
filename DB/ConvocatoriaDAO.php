@@ -31,7 +31,7 @@ class ConvocatoriaDAO{
     }
     public function buscarConvocatoriaxFacultad($id_facultad){
         $convocatoria = new Convocatoria();
-        $sqltxt = "select * from convocatoria where id_facultad = '".$id_facultad."'";
+        $sqltxt = "select * from convocatoria where id_facultad =".$id_facultad." AND fecha_fin > sysdate";
         $stid = oci_parse($_SESSION['sesion_logueado'], $sqltxt);
         oci_execute($stid);
         while(oci_fetch($stid)) {
@@ -43,7 +43,7 @@ class ConvocatoriaDAO{
             $convocatoria->setCupos(oci_result($stid, 'CUPOS'));            
             $convocatoria->getPeriodo(oci_result($stid, 'PERIODO'));
         }
-        //echo $persona->getApellido_persona();
+        echo $convocatoria->getId_convocatoria()."aaaaaaaaaaaaaaaaadwwqqwd";
         return $convocatoria;
     }
 }

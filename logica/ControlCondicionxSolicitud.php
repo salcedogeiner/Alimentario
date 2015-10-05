@@ -2,7 +2,7 @@
 
 
 include '../DB/CondicionxSolicitudDAO.php';
-include '../Negocio/CondicionxSolicitud.php';
+//include '../Negocio/CondicionxSolicitud.php';
 
 
 
@@ -22,6 +22,7 @@ class ControlCondicionxSolicitud {
         $this->condicionxsolicitud->setId_condicion($id_condicion);
         $this->condicionxsolicitud->setId_convocatoria($id_convocatoria);
         $this->condicionxsolicitud->setDescripcion($descripcion);
+        
         $this->condicionxsolicitudDAO->crearCondicionxSolicitud($this->condicionxsolicitud);        
         
     }
