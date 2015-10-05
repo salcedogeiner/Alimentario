@@ -71,7 +71,7 @@ class Estudiante{
         return $this;
     }
     public function setCodigo_estudiante($codigo_estudiante) {
-        $this->codigo_estudiante = $codigo_estudiante;
+        $this->codigo = $codigo_estudiante;
         return $this;
     }
 
