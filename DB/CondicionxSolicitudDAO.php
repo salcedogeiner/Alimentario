@@ -14,13 +14,18 @@
 include '../Negocio/CondicionxSolicitud.php';
 class CondicionxSolicitudDAO {
     //put your code here
-    function __construct() {
+    
+    public function __construct() {
         
     }
 
     public function crearCondicionxSolicitud($condicionxsolicitud){
+        $condicionxsolicitud=new CondicionxSolicitud();
         
-        
+        $sqltxt="insert into CondicionxSolicitud values(".$condicionxsolicitud->getId_condicion().",'".$condicionxsolicitud->getCodigo_est()."',".
+                $condicionxsolicitud->getId_convocatoria().",'".$condicionxsolicitud->getDescripcion()."')";
+        $stid = oci_parse($_SESSION['sesion_logueado'],$sqltxt);
+        oci_execute($stid);
         
     }
     
