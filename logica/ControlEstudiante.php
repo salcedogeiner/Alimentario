@@ -6,7 +6,7 @@
  * and open the template in the editor.
  */
 
-include '../Negocio/Estudiante.php';
+include '../DB/EstudianteDAO.php';
 
 class ControlEstudiante{
     
@@ -14,7 +14,6 @@ class ControlEstudiante{
     private $estudianteDAO;
     
     public function __construct() {
-        $this->estudiante=new Estudiante();
         $this->estudianteDAO=new EstudianteDAO();
     }
     

@@ -5,6 +5,10 @@ include '../DB/ConexionDB.php';
 include '../logica/ControlPersona.php';
 include '../logica/ControlTipoCondicion_SE.php';
 include '../logica/ControlCondicion_SE.php';
+include '../logica/ControlFacultad.php';
+include '../logica/ControlConvocatoria.php';
+include '../logica/ControlSolicitud.php';
+include '../logica/ControlEstudiante.php';
 ?>
 
 <!DOCTYPE html>
