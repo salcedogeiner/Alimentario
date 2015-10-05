@@ -7,7 +7,6 @@
  */
 
 class Solicitud{
-    private $id_solicitud;
     private $soportes_solicitud;
     private $codigo_estudiante;
     private $id_convocatoria;
@@ -18,9 +17,7 @@ class Solicitud{
         
     }
 
-    public function getId_solicitud() {
-        return $this->id_solicitud;
-    }
+  
     
     public function getCodigo_estudiante() {
         return $this->codigo_estudiante;
@@ -42,10 +39,7 @@ class Solicitud{
         return $this->soportes_solicitud;
     }
 
-    public function setId_solicitud($id_solicitud) {
-        $this->id_solicitud = $id_solicitud;
-        return $this;
-    }
+
 
     public function setSoportes_solicitud($soportes_solicitud) {
         $this->soportes_solicitud = $soportes_solicitud;

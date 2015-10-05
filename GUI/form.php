@@ -36,6 +36,8 @@ and open the template in the editor.
                     <div>
                         
                         <?php
+                 $cFacultad = new ControlFacultad();
+                        $cConvocatoria = new ControlConvocatoria();
                 $conn = new ConexionDB($_SESSION['usuario_login'], $_SESSION['password_login']);
                 if ($conn->conectarDB()) {
                     $sesion = $conn->getConn();
@@ -44,12 +46,16 @@ and open the template in the editor.
                     $cPersona = new ControlPersona();
                     $persona = new Persona();
                     $persona = $cPersona->buscarPersonaxUsuario($_SESSION['usuario_login']);
+                    
+                     $cSolictud = new ControlSolicitud();
+                      $persona_documento=$persona->getDocumento_persona();
+                        
+                        $cEstudiante = new ControlEstudiante();
+                        $estudiante = $cEstudiante->buscarEstudiantexDocumento($persona_documento);
+                        $estudiante_codigo= $estudiante->getCodigo_estudiante();
                     //echo $persona->getNombre_persona()." ".$persona->getApellido_persona(); //->getNombre_persona()." ".$persona->getTipo_persona();
                     //echo $_SESSION['usuario_logueado'];
                 }
-                
-                $tipo_cond= new ControlTipoCondicion_SE();
-                $cond= new ControlCondicion_SE();
                 ?>
                         <div class="focus" style="width: 1075px">
                                                         <center><h3 class="form-signin-heading">Informacion Personal</h3></center>
@@ -60,7 +66,7 @@ and open the template in the editor.
                 echo '<h3 class="form-signin-heading"> Documento: '.$persona->getDocumento_persona().'</h3>';
                             ?></center></div>
                             <div class="col-sm-6"><center><?php 
-                //echo '<h3 class="form-signin-heading"> Codigo: '.$persona->getCodigo_persona().'</h3>';
+                echo '<h3 class="form-signin-heading"> Codigo: '.$estudiante_codigo.'</h3>';
                             ?></center></div>
                             <div class="col-sm-6"><center><?php 
                 echo '<h3 class="form-signin-heading"> Sexo: '.$persona->getGenero_persona().'</h3>';
@@ -120,6 +126,46 @@ and open the template in the editor.
                             echo '</div>';
                                 }                                
                         ?>
+                <div class="container" >
+                    <br>
+                   <select id="subject" name="facultad" class="form-control" required="required">
+                    <?php
+                    //->verFacultades();
+                    //$fa=new Facultad();
+                    foreach ($cFacultad->verFacultades() as $fa) {
+                        echo '<option value="' . $fa->getId_facultad() . '">' . $fa->getNombre_facultad() . '</option>';
+                    }
+                    ?> 
+                     </select>
+                <br>
+                    
+                    <form enctype="multipart/form-data" action="#" method="POST">
+                    Enviar este fichero: <input name="file" type="file" />
+                    </form>
+                    
+                </div>
+                
+                <div class="container" >
+                    
+                    
+                    
+                    <br>
+                    <div class="col-sm-12"> </div>
+                    <div class="col-sm-12" style="padding-top: 10%"> 
+                        <button class= "btn btn-primary btn-block" type="submit">Enviar</button>  
+                    </div>
+                    <div class="col-sm-12" style="padding-left:10%"> </div>
+                </div>
+                <?php 
+                  if (isset($_POST['submit'])) {
+                        $archivo_temp = $_FILES['file']['tmp_name'];
+                        $archivo_string = file_get_contents($archivo_temp);
+                        $convocatoria=$cConvocatoria->buscarConvocatoriaxFacultad($_POST['facultad']);
+                        $convocatoria_id=$convocatoria->getId_convocatoria();
+                 $cSolictud->CrearSolicitud($estudiante_codigo,$convocatoria_id,$archivo_string);
+                      } 
+                
+                ?>
                 <div class="container" >
                     <div class="col-sm-2" > </div>
                     <div class="col-sm-8" > 

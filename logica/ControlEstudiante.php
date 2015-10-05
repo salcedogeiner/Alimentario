@@ -11,11 +11,11 @@ include '../Negocio/Estudiante.php';
 class ControlEstudiante{
     
     private $estudiante;
+    private $estudianteDAO;
     
-    
-    private function __construct() {
+    public function __construct() {
         $this->estudiante=new Estudiante();
-        
+        $this->estudianteDAO=new EstudianteDAO();
     }
     
     public function hacerEstudiante($nombre_estudiante,$apellido_estudiante,$documento_estudiante,$codigo_estudiante,
@@ -30,7 +30,9 @@ class ControlEstudiante{
         $estudiante->setUsuario_estudiante($usuario_estudiante);
         $estudiante->setMatriculas_estudiante($matriculas_estudiante);
     }
-    
+    public function buscarEstudiantexDocumento($documento){
+         return $this->estudianteDAO->buscarEstudiantexDocumento($documento);
+    }
     
     
 }

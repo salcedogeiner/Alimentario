@@ -1,33 +1,18 @@
-<?php
-
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 class Estudiante{
     
-    private $nombre_estudiante;
-    private $apellido_estudiante;
-    private $matriculas_estudiante;
-    private $documento_estudiante;
     private $codigo;
-    private $usuario_estudiante;
-    private $carrera_estudiante;
+    private $documento_estudiante;
+    private $matriculas_estudiante;
     private $activo_estudiante;
+    private $carrera_estudiante;
+    private $promedio_estudiante;
+    
     
     public function __construct() {
         
     }
 
-    public function getNombre_estudiante() {
-        return $this->nombre_estudiante;
-    }
-
-    public function getApellido_estudiante() {
-        return $this->apellido_estudiante;
-    }
+    
 
     public function getMatriculas_estudiante() {
         return $this->matriculas_estudiante;
@@ -72,7 +57,11 @@ class Estudiante{
         $this->documento_estudiante = $documento_estudiante;
         return $this;
     }
-
+    
+     public function setPromedio_estudiante($promedio_estudiante) {
+        $this->promedio_estudiante = $promedio_estudiante;
+        return $this;
+    }
     public function setCodigo_estudiante($codigo_estudiante) {
         $this->codigo_estudiante = $codigo_estudiante;
         return $this;

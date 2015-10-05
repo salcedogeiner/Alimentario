@@ -26,11 +26,14 @@ class ControlConvocatoria{
         //echo $this->convocatoria->getId_facultad();
         $this->convocatoriaDAO->crearConvocatoria($this->convocatoria);
     }
-
-    public function verConvocatorias(){
-        $convocatoria= $this->convocatoria;
-        
+    public function buscarConvocatoriaxFacultad($id_facultad){
+        return $this->convocatoriaDAO->buscarConvocatoriaxFacultad($id_facultad);
         
         
     }
+    public function verConvocatorias(){
+        $convocatoria= $this->convocatoria;
+    }
+    
+   
 }
