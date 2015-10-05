@@ -28,9 +28,12 @@ class ControlConvocatoria{
     }
     public function buscarConvocatoriaxFacultad($id_facultad){
         return $this->convocatoriaDAO->buscarConvocatoriaxFacultad($id_facultad);
-        
-        
     }
+    
+    public function verConvocatoriasActivas(){
+        return $this->convocatoriaDAO->verConvocatoriasActivas(); 
+    }
+    
     public function verConvocatorias(){
         $convocatoria= $this->convocatoria;
     }

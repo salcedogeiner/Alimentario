@@ -102,12 +102,12 @@ and open the template in the editor.
                                   $archivo_temp = $_FILES['file']['tmp_name'];
                                   $archivo_string = file_get_contents($archivo_temp);
                                 //echo $_POST['facultad']."aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
-                                  $convocatoria=$cConvocatoria->buscarConvocatoriaxFacultad($_POST['facultad']);
-                                  $convocatoria_id=$convocatoria->getId_convocatoria();
-                                  $cSolictud->CrearSolicitud($estudiante_codigo,$convocatoria_id,$archivo_string);
+                                  //$convocatoria=$cConvocatoria->buscarConvocatoriaxFacultad($_POST['id_convocatoria']);
+                                  //$convocatoria_id=$convocatoria->getId_convocatoria();
+                                  $cSolictud->CrearSolicitud($estudiante_codigo,$_POST['id_convocatoriasol'],$archivo_string);
                                  foreach($_POST['seleccion'] as $sel){
                                         echo $sel;
-                                        $cCondicionxSolicitud->crearCondicionxSolicitud($estudiante_codigo,$sel, $convocatoria_id,"na");
+                                        $cCondicionxSolicitud->crearCondicionxSolicitud($estudiante_codigo,$sel,$_POST['id_convocatoriasol'],"na");
                                 }
                             }
                             ?>
@@ -153,17 +153,28 @@ and open the template in the editor.
 
                             <div class="container" >
                                 <br>
-                                <select id="subject" name="facultad" class="form-control" required="required">
+                                <h3 class="form-signin-heading">Seleccione La convocatoria Para enviar Solicitud</h3>
+                                <select id="subject" name="id_convocatoriasol" class="form-control" required="required">
                                 <?php
                                 //->verFacultades();
-                                //$fa=new Facultad();
-                                foreach ($cFacultad->verFacultades() as $fa) {
-                                    echo '<option value="' . $fa->getId_facultad() . '">' . $fa->getNombre_facultad() . '</option>';
+                                //$facul=new Facultad();
+                                $convo=new Convocatoria();
+                                
+                                foreach($cConvocatoria->verConvocatoriasActivas() as $convo){
+                                    echo $convo->getCupos().'  '.$convo->getPeriodo();
+                                        $facul=$cFacultad->buscarFacultad($convo->getId_facultad());
+                                        echo '<option value="'.$convo->getId_convocatoria().'">Convocatoria  '.$facul->getNombre_facultad().'  cupos:  '.$convo->getCupos().
+                                                '  inicio:  '.$convo->getFecha_inicio().'  fin:  '.$convo->getFecha_fin().'</option>';
                                 }
+                                
+                                /*foreach ($cFacultad->verFacultades() as $fa) {
+                                    echo '<option value="' . $fa->getId_facultad() . '">' . $fa->getNombre_facultad() . '</option>';
+                                }*/
                                 ?> 
                                 </select>
                                 <br>
-
+                                
+                                
 
                                 Enviar este fichero: <input name="file" type="file" />
 

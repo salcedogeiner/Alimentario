@@ -41,9 +41,31 @@ class ConvocatoriaDAO{
             $convocatoria->setFecha_inicio(oci_result($stid, 'FECHA_INICIO'));
             $convocatoria->setFecha_fin(oci_result($stid, 'FECHA_FIN'));
             $convocatoria->setCupos(oci_result($stid, 'CUPOS'));            
-            $convocatoria->getPeriodo(oci_result($stid, 'PERIODO'));
+            $convocatoria->setPeriodo(oci_result($stid, 'PERIODO'));
         }
         echo $convocatoria->getId_convocatoria()."aaaaaaaaaaaaaaaaadwwqqwd";
         return $convocatoria;
+    }
+    public function verConvocatoriasActivas(){
+        $convocatorias=array();
+        $i=0;
+        $sqltxt = "select * from convocatoria where fecha_inicio< sysdate AND fecha_fin > sysdate";
+        $stid = oci_parse($_SESSION['sesion_logueado'], $sqltxt);
+        oci_execute($stid);
+        while(oci_fetch($stid)) {
+            //$persona->setCodigo_persona(oci_result($stid, 'CODIGO'));
+            $convocatoria = new Convocatoria();
+            $convocatoria->setId_convocatoria(oci_result($stid, 'ID_CONVOCATORIA'));
+            $convocatoria->setId_facultad(oci_result($stid, 'ID_FACULTAD'));
+            $convocatoria->setFecha_inicio(oci_result($stid, 'FECHA_INICIO'));
+            $convocatoria->setFecha_fin(oci_result($stid, 'FECHA_FIN'));
+            $convocatoria->setCupos(oci_result($stid, 'CUPOS'));            
+            $convocatoria->setPeriodo(oci_result($stid, 'PERIODO'));
+            $convocatorias[$i]=$convocatoria;
+            $i+=1;
+        }
+        //echo $convocatoria->getId_convocatoria()."aaaaaaaaaaaaaaaaadwwqqwd";
+        return $convocatorias;
+        
     }
 }
