@@ -31,7 +31,7 @@ class Estudiante{
     }
 
     public function getCodigo_estudiante() {
-        return $this->codigo_estudiante;
+        return $this->codigo;
     }
 
     public function getUsuario_estudiante() {
