@@ -88,10 +88,17 @@ and open the template in the editor.
                             </div>
 
 
-                            <center><h3 class="form-signin-heading"> Información socio economica</h3></center>
+                           
                             <?php
                             if (isset($_POST['submit'])) {
                                 echo 'ALGO ESTA PASANDO???????????????????????????????????';
+                                
+                                foreach($_POST['seleccion'] as $sel){
+                                    
+                                        echo $sel;
+                                }
+                                //cho seleccion[];
+                                
                                 /* $archivo_temp = $_FILES['file']['tmp_name'];
                                   $archivo_string = file_get_contents($archivo_temp);
                                   $convocatoria=$cConvocatoria->buscarConvocatoriaxFacultad($_POST['facultad']);
