@@ -71,8 +71,10 @@
                     </li>
 
                     <li class="lib">
+                        <a href="../puente/Salir.php">
                         <div class="barra"></div>
                         <p class="menu">salir</p>
+                        </a>
                     </li>
 
 
