@@ -30,8 +30,9 @@ class ControlCondicion_SE {
         
         $this->condicion_SEDAO->crearCondicion_SE($this->condicion_SE);
         
-        
-        
     }
     
+    public function verCondiciones_SE($id_tipo){
+        return $this->condicion_SEDAO->verCondiciones_SExtipo($id_tipo);        
+    }    
 }

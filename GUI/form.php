@@ -3,6 +3,8 @@ session_start();
 //include '../logica/ControlPersona.php';
 include '../DB/ConexionDB.php';
 include '../logica/ControlPersona.php';
+include '../logica/ControlTipoCondicion_SE.php';
+include '../logica/ControlCondicion_SE.php';
 ?>
 
 <!DOCTYPE html>
@@ -24,9 +26,6 @@ and open the template in the editor.
     <body>
         <?php 
         include 'headerlog.php';
-        ?>
-        
-        <?php 
         include 'menuLateral.php';
         ?>
 <div class="container">
@@ -48,6 +47,9 @@ and open the template in the editor.
                     //echo $persona->getNombre_persona()." ".$persona->getApellido_persona(); //->getNombre_persona()." ".$persona->getTipo_persona();
                     //echo $_SESSION['usuario_logueado'];
                 }
+                
+                $tipo_cond= new ControlTipoCondicion_SE();
+                $cond= new ControlCondicion_SE();
                 ?>
                         <div class="focus" style="width: 1075px">
                                                         <center><h3 class="form-signin-heading">Informacion Personal</h3></center>
@@ -79,8 +81,7 @@ and open the template in the editor.
                 <div>
                    
                     <div>
-                        <div class="container">
-
+                        <div class="container">                         
                             <div class="containerl2">
                                 <form id="form" method="post">
                                     <br>
@@ -92,157 +93,54 @@ and open the template in the editor.
                                     </div>                                        
                                 </form>           
                             </div>
-
-                            <div class="containerl2">
-                                <form id="form" method="post">
-                                    <br>
-                                    <div class="container" style="width: 1075px">
-                                        <center><h3 class="form-signin-heading">Condiciones familiares</h3></center>
-
-                                        <div class="col-sm-6">
-                                            <br>
-                                            <label for="subject"> ¿Como estudiante sostiene el hogar en que vive?:</label>
-                                            <br>
-                                            <input type="radio" name="hogar" checked="" value="si"><label for="name">SI</label>
-                                            <br>
-                                            <input type="radio" name="hogar" value="no"><label for="name">NO</label>
-                                        </div>
-
-                                        <div class="col-sm-6">
-                                            <br>
-                                            <label for="subject">¿Como estudiante se sostiene económicamente a si mismo?</label>
-                                            <br>
-                                            <input type="radio" name="sostiene" checked="" value="si"><label for="name" required="">SI</label>
-                                            <br>
-                                            <input type="radio" name="sostiene" value="no"><label for="name" required="">NO</label>
-                                        </div>
-
-                                        <div class="col-sm-6">
-                                            <br>
-                                            <label for="subject">¿Vive fuera de su núcleo familiar de origen (papá, mamá, hermanos)?</label>
-                                            <br>
-                                            <input type="radio" name="nucleo" checked="" value="si"><label for="name">SI</label>
-                                            <br>
-                                            <input type="radio" name="nucleo" value="no"><label for="name">NO</label>
-                                        </div>
-
-                                        <div class="col-sm-6">
-                                            <br>
-                                            <label for="subject">¿Tiene conyuge, hijos u otras personas a cargo?</label>
-                                            <br>
-                                            <input type="radio" name="conyuge" checked="" value="si"><label for="name">SI</label>
-                                            <br>
-                                            <input type="radio" name="conyuge" value="no"><label for="name">NO</label>
-                                        </div>
-                                        <br>
-                                        <input type="file" name="file2">
-                                    </div>
-                                </form>
-                            </div> 
-
-                            <div class="containerl2">
-                                <form id="form" method="post">
-                                    
-                                    <div class="container" style="width: 1075px">
-                                        
-                                        <center><h3 class="form-signin-heading">Procedencia y lugar de procedencia</h3></center>
-
-                                        <div class="col-sm-6">
-                                            <br>
-                                            <label for="subject">¿Vive en casa de empleador? </label>
-                                            <br>
-                                            <input type="radio" name="peracar" checked="" value="si"><label for="name">SI</label>
-                                            <br>
-                                            <input type="radio" name="peracar" value="no"><label for="name">NO</label>
-                                        </div>
-
-                                        <div class="col-sm-6">
-                                            <br>
-                                            <label for="subject">¿Se encuentra en condición de desplazamiento forzado?</label>
-                                            <br>
-                                            <input type="radio" name="sostiene" checked="" value="si"><label for="name" required="">SI</label>
-                                            <br>
-                                            <input type="radio" name="sostiene" value="no"><label for="name" required="">NO</label>
-                                        </div>
-
-                                        <div class="col-sm-6">
-                                            <br>
-                                            <label for="subject">¿Proviene de Municipios o ciudades distintos a Bogotá?</label>
-                                            <br>
-                                            <input type="radio" name="municipio" checked="" value="si"><label for="name">SI</label>
-                                            <br>
-                                            <input type="radio" name="municipio" value="no"><label for="name">NO</label>
-                                        </div>
-                                        
-                                        <div class="col-sm-6">
-                                            <br>
-                                            <label for="subject">¿Recide en zonas de alto grado de vulnerabilidad social y economica?</label>
-                                            <br>
-                                            <input type="radio" name="zona" checked="" value="si"><label for="name">SI</label>
-                                            <br>
-                                            <input type="radio" name="zona" value="no"><label for="name">NO</label>
-                                        </div>
-                                        <input type="file" name="file3">
-                                    </div>                                        
-                                </form>           
-                            </div>
+                            <?php
                             
-                            <div class="containerl2">
-                                <form id="form" method="post">
+                                //$tipo = new Tipo_Condicion_SE();
+                                //$contador=0;
+                                foreach ($tipo_cond->verTipos_Condiciones() as $tipo){  
+                                    echo '<div class="containerl2">';
+                                echo '<form id="form" method="post">';
+                                echo '<div class="container" style="width: 1075px">';
+                                    echo '<center><h3 class="form-signin-heading">'.$tipo->getNombre_tipo_condicion().'</h3></center>';
+                                    //$condi=new Condicion_SE();
+                                    foreach ($cond->verCondiciones_SE($tipo->getId_tipo_condicion()) as $condi){                                        
+                                        echo '<div class="col-sm-6">';
+                                            echo '<br>';
+                                            echo '<input type="checkbox" name="seleccion[]" value="'.$condi->getId_condicion().'"/><h4 class="form-signin-heading">'.$condi->getNombre_condicion().'</h4></br>';
+                                            echo '<br>';
+                                            //echo '<input type="radio" name="hogar" checked="" value="si"><label for="name">SI</label>';
+                                            //echo '<br>';
+                                            //echo '<input type="radio" name="hogar" value="no"><label for="name">NO</label>';
+                                        echo '</div>';
+                                        //$contador+=1;
+                                        }
+                                    echo '</div>';
                                     
-                                    <div class="container" style="width: 1075px">
-                                        
-                                        <center><h3 class="form-signin-heading">Condiciones de salud</h3></center>
-
-                                        <div class="col-sm-6">
-                                            <br>
-                                            <label for="subject">¿Presenta algún tipo de discapacidad fisica o mental? </label>
-                                            <br>
-                                            <input type="radio" name="discapacidad" checked="" value="si"><label for="name">SI</label>
-                                            <br>
-                                            <input type="radio" name="discapacidad" value="no"><label for="name">NO</label>
-                                        </div>
-
-                                        <div class="col-sm-6">
-                                            <br>
-                                            <label for="subject">¿Sufre de algún problema de alimentación?</label>
-                                            <br>
-                                            <input type="radio" name="alimentacion" checked="" value="si"><label for="name" required="">SI</label>
-                                            <br>
-                                            <input type="radio" name="alimentacion" value="no"><label for="name" required="">NO</label>
-                                        </div>
-
-                                        <input type="file" name="file3">
-                                    </div>                                        
-                                </form>           
-                            </div>
-                                       
-                        </div>
-                                                                 
-                    </div>                                               
-                </div>
-
+                                    echo '</form>';           
+                            echo '</div>';
+                                }                                
+                        ?>
                 <div class="container" >
-                    <div class="col-sm-12"> </div>
-                    <div class="col-sm-12" style="padding-top: 10%"> 
+                    <div class="col-sm-2" > </div>
+                    <div class="col-sm-8" > 
                         <button class= "btn btn-primary btn-block" type="submit">Enviar</button>  
                     </div>
-                    <div class="col-sm-12" style="padding-left:10%"> </div>
+                    
                 </div>
 
             </div>                         
         </div> 
+    </div>
+</div>
+</div>                    
 </div>
         <br><br>
 
         <div id="footer">
             <div>
-                <br></br>
-                <br></br>
+                <br><br>
                 
-                <center><p>&#169; 2015 Bases de Datos 2.</p></center>
-                
-
+                <center>&#169; 2015 Bases de Datos 2.</center>
             </div>
         </div>
     </body>

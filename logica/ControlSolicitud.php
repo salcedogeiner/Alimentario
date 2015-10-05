@@ -10,7 +10,7 @@ class ControlSolicitud{
     private $solicitud;
     private $solicitudDAO;
     
-    private function __construct() {
+    public function __construct() {
         $this->solicitudDAO=new SolicitudDAO();       
     }
     
