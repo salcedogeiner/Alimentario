@@ -31,7 +31,7 @@ include './menuLateral.php';
 ?>      
         <div class="col-sm-8">
             
-            <h2>Bienvenido <?php
+            <center><h2>Bienvenido <?php
                 $conn = new ConexionDB($_SESSION['usuario_login'], $_SESSION['password_login']);
                 if ($conn->conectarDB()) {
                     $sesion = $conn->getConn();
@@ -44,7 +44,7 @@ include './menuLateral.php';
                     //echo $_SESSION['usuario_logueado'];
                 }
                 ?>
-            </h2>
+            </h2></center>
 
 
                 </div>

@@ -24,7 +24,7 @@ class CondicionxSolicitudDAO {
         
         $sqltxt="insert into s_CondicionxSolicitud values(".$condicionxsolicitud->getId_condicion().",'".$condicionxsolicitud->getCodigo_est()."',".
                 $condicionxsolicitud->getId_convocatoria().",'".$condicionxsolicitud->getDescripcion()."')";
-        echo $sqltxt;
+        //echo $sqltxt;
         $stid = oci_parse($_SESSION['sesion_logueado'],$sqltxt);
         oci_execute($stid);
         

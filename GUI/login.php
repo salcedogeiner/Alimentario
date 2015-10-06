@@ -49,7 +49,7 @@ include '../DB/ConexionDB.php';
                 echo $persona->getApellido_persona();//->getNombre_persona()." ".$persona->getTipo_persona();*/
                 header("Location: menu.php");
             } else {
-                echo '<h1>ingerese un usuario o contrasena validos</h1>';
+                echo '<center><h1>ingerese un usuario o contrasena validos</h1></center>';
                 //header("Location: ../GUI/login.php");
             }
         } 

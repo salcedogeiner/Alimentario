@@ -65,9 +65,9 @@ and open the template in the editor.
                                     $cEstudiante = new ControlEstudiante();
                                     $estudiante = $cEstudiante->buscarEstudiantexDocumento($persona_documento);
                                     $estudiante_codigo = $estudiante->getCodigo_estudiante();
-                                    
-                                    $cCondicionxSolicitud=new ControlCondicionxSolicitud();
-                                    
+
+                                    $cCondicionxSolicitud = new ControlCondicionxSolicitud();
+
                                     //echo $persona->getNombre_persona()." ".$persona->getApellido_persona(); //->getNombre_persona()." ".$persona->getTipo_persona();
                                     //echo $_SESSION['usuario_logueado'];
                                 }
@@ -75,144 +75,152 @@ and open the template in the editor.
                                 <div class="focus" style="width: 1075px">
                                     <center><h3 class="form-signin-heading">Informacion Personal</h3></center>
                                     <div class="col-sm-6"><center><?php
-                                            echo '<h3 class="form-signin-heading"> Nombre: ' . $persona->getNombre_persona() . ' ' . $persona->getApellido_persona() . '</h3>';
-                                            ?></center></div>
+                                echo '<h3 class="form-signin-heading"> Nombre: ' . $persona->getNombre_persona() . ' ' . $persona->getApellido_persona() . '</h3>';
+                                ?></center></div>
+
+                                    <br>
+                                    <input type="text" class="form-control" placeholder="" />
+                                    <br>
+
                                     <div class="col-sm-6"><center><?php
                                             echo '<h3 class="form-signin-heading"> Documento: ' . $persona->getDocumento_persona() . '</h3>';
-                                            ?></center></div>
+                                ?></center></div>
                                     <div class="col-sm-6"><center><?php
                                             echo '<h3 class="form-signin-heading"> Codigo: ' . $estudiante_codigo . '</h3>';
-                                            ?></center></div>
+                                ?></center></div>
                                     <div class="col-sm-6"><center><?php
                                             echo '<h3 class="form-signin-heading"> Sexo: ' . $persona->getGenero_persona() . '</h3>';
-                                            ?></center></div>
+                                ?></center></div>
 
                                 </div>
                                 <hr>
                             </div>
 
 
-                           
+
                             <?php
                             if (isset($_POST['submit'])) {
-                                echo 'ALGO ESTA PASANDO???????????????????????????????????';
-                               
+                                //echo 'ALGO ESTA PASANDO???????????????????????????????????';
                                 //cho seleccion[];
-                                
-                                  $archivo_temp = $_FILES['file']['tmp_name'];
-                                  $archivo_string = file_get_contents($archivo_temp);
+
+                                $archivo_temp = $_POST['file'];
+                                //$ass=  parse_url($archivo_temp);
+                                echo $archivo_temp;
                                 //echo $_POST['facultad']."aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
-                                  //$convocatoria=$cConvocatoria->buscarConvocatoriaxFacultad($_POST['id_convocatoria']);
-                                  //$convocatoria_id=$convocatoria->getId_convocatoria();
-                                  $cSolictud->CrearSolicitud($estudiante_codigo,$_POST['id_convocatoriasol'],$archivo_string);
-                                 foreach($_POST['seleccion'] as $sel){
-                                        echo $sel;
-                                        $cCondicionxSolicitud->crearCondicionxSolicitud($estudiante_codigo,$sel,$_POST['id_convocatoriasol'],"na");
+                                //$convocatoria=$cConvocatoria->buscarConvocatoriaxFacultad($_POST['id_convocatoria']);
+                                //$convocatoria_id=$convocatoria->getId_convocatoria();
+                                $cSolictud->CrearSolicitud($estudiante_codigo, $_POST['id_convocatoriasol'], $archivo_temp);
+                                foreach ($_POST['seleccion'] as $sel) {
+                                    echo $sel;
+                                    $cCondicionxSolicitud->crearCondicionxSolicitud($estudiante_codigo, $sel, $_POST['id_convocatoriasol'], "na");
                                 }
                             }
                             ?>
-                            
+
 
                             <div>
+                                <br>
 
                                 <div>
                                     <div class="container">
-                                    <?php
-                                    //$tipo = new Tipo_Condicion_SE();
-                                    //$contador=0;
-                                    $tipo_cond = new ControlTipoCondicion_SE();
-                                    $cond = new ControlCondicion_SE();
-                                    foreach ($tipo_cond->verTipos_Condiciones() as $tipo) {
-                                        echo '<div class="containerl2">';
-                                        echo '';
-                                        echo '<div class="container" style="width: 1075px">';
-                                        echo '<center><h3 class="form-signin-heading">' . $tipo->getNombre_tipo_condicion() . '</h3></center>';
-                                        //$condi=new Condicion_SE();
-                                        foreach ($cond->verCondiciones_SE($tipo->getId_tipo_condicion()) as $condi) {
-                                            echo '<div class="col-sm-6">';
-                                            echo '<br>';
-                                            echo '<input type="checkbox" name="seleccion[]" value="' . $condi->getId_condicion() . '"/><h4 class="form-signin-heading">' . $condi->getNombre_condicion() . '</h4></br>';
-                                            echo '<br>';
-                                            //echo '<input type="radio" name="hogar" checked="" value="si"><label for="name">SI</label>';
-                                            //echo '<br>';
-                                            //echo '<input type="radio" name="hogar" value="no"><label for="name">NO</label>';
-                                            echo '</div>';
-                                            //$contador+=1;
-                                        }
-                                        echo '</div>';
+                                        <div class="col-sm-4">
+                                            <?php
+                                            //$tipo = new Tipo_Condicion_SE();
+                                            //$contador=0;
+                                            $tipo_cond = new ControlTipoCondicion_SE();
+                                            $cond = new ControlCondicion_SE();
+                                            foreach ($tipo_cond->verTipos_Condiciones() as $tipo) {
+                                                echo '<div class="containerl2">';
+                                                echo '';
+                                                echo '<div class="container" style="width: 1075px">';
+                                                echo '<center><h3 class="form-signin-heading">' . $tipo->getNombre_tipo_condicion() . '</h3></center>';
+                                                //$condi=new Condicion_SE();
+                                                foreach ($cond->verCondiciones_SE($tipo->getId_tipo_condicion()) as $condi) {
+                                                    echo '<div class="col-sm-6">';
+                                                    echo '<br>';
+                                                    echo '<input type="checkbox" name="seleccion[]" value="' . $condi->getId_condicion() . '"/><h4 class="form-signin-heading">' . $condi->getNombre_condicion() . '</h4></br>';
+                                                    echo '<br>';
+                                                    //echo '<input type="radio" name="hogar" checked="" value="si"><label for="name">SI</label>';
+                                                    //echo '<br>';
+                                                    //echo '<input type="radio" name="hogar" value="no"><label for="name">NO</label>';
+                                                    echo '</div>';
+                                                    //$contador+=1;
+                                                }
+                                                echo '</div>';
 
-                                        echo '<hr>';
-                                        echo '</div>';
-                                    }
-                                    ?>
+                                                echo '<hr>';
+                                                echo '</div>';
+                                            }
+                                            ?>
+                                            <div class="col-sm-6">
+                                            </div>                     
 
-                                    </div>                     
+                                        </div>
+                                    </div>
 
-                                </div>
-                            </div>
+                                    <div class="container" >
+                                        <br>
+                                        <h3 class="form-signin-heading">Seleccione La convocatoria Para enviar Solicitud</h3>
+                                        <select id="subject" name="id_convocatoriasol" class="form-control" required="required">
+                                            <?php
+                                            //->verFacultades();
+                                            //$facul=new Facultad();
+                                            $convo = new Convocatoria();
 
-                            <div class="container" >
-                                <br>
-                                <h3 class="form-signin-heading">Seleccione La convocatoria Para enviar Solicitud</h3>
-                                <select id="subject" name="id_convocatoriasol" class="form-control" required="required">
-                                <?php
-                                //->verFacultades();
-                                //$facul=new Facultad();
-                                $convo=new Convocatoria();
-                                
-                                foreach($cConvocatoria->verConvocatoriasActivas() as $convo){
-                                    echo $convo->getCupos().'  '.$convo->getPeriodo();
-                                        $facul=$cFacultad->buscarFacultad($convo->getId_facultad());
-                                        echo '<option value="'.$convo->getId_convocatoria().'">Convocatoria  '.$facul->getNombre_facultad().'  cupos:  '.$convo->getCupos().
-                                                '  inicio:  '.$convo->getFecha_inicio().'  fin:  '.$convo->getFecha_fin().'</option>';
-                                }
-                                
-                                /*foreach ($cFacultad->verFacultades() as $fa) {
-                                    echo '<option value="' . $fa->getId_facultad() . '">' . $fa->getNombre_facultad() . '</option>';
-                                }*/
-                                ?> 
-                                </select>
-                                <br>
-                                
-                                
+                                            foreach ($cConvocatoria->verConvocatoriasActivas() as $convo) {
+                                                echo $convo->getCupos() . '  ' . $convo->getPeriodo();
+                                                $facul = $cFacultad->buscarFacultad($convo->getId_facultad());
+                                                echo '<option value="' . $convo->getId_convocatoria() . '">Convocatoria  ' . $facul->getNombre_facultad() . '  cupos:  ' . $convo->getCupos() .
+                                                '  inicio:  ' . $convo->getFecha_inicio() . '  fin:  ' . $convo->getFecha_fin() . '</option>';
+                                            }
 
-                                Enviar este fichero: <input name="file" type="file" />
-
-                            </div>
-
-                            <div class="container" >
+                                            /* foreach ($cFacultad->verFacultades() as $fa) {
+                                              echo '<option value="' . $fa->getId_facultad() . '">' . $fa->getNombre_facultad() . '</option>';
+                                              } */
+                                            ?> 
+                                        </select>
+                                        <br>
 
 
 
-                                <br>
-                                <div class="col-sm-12"> </div>
-                                <div class="col-sm-12" style="padding-top: 10%"> 
-                                    <button class= "btn btn-primary btn-block" type="submit" name="submit">Enviar</button>  
-                                </div>
-                                <div class="col-sm-12" style="padding-left:10%"> </div>
-                            </div>
+                                        <center><h2> Enviar este fichero:</h2>
+                                            <br> <input name="file" type="file"  /></center>
+
+                                    </div>
+
+                                    <div class="container" >
 
 
-                        </div>                         
-                    </div> 
-                </form>
-            </div>
-        </div>
-        <br><br>
 
-        <div id="footer">
-            <div>
-                <br></br>
-                <br></br>
-
-                <center><p>&#169; 2015 Bases de Datos 2.</p></center>
+                                        <br>
+                                        <div class="col-sm-12"> </div>
+                                        <div class="col-sm-12" style="padding-top: 10%"> 
+                                            <button class= "btn btn-primary btn-block" type="submit" name="submit">Enviar</button>  
+                                        </div>
+                                        <div class="col-sm-12" style="padding-left:10%"> </div>
+                                    </div>
 
 
-            </div>
-        </div>
-    </body>
+                                </div>                         
+                            </div> 
+                            </form>
+                        </div>
+                    </div>
+                    <br><br>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="public/js/bootstrap.min.js"></script> 
-</html>
+                    <div id="footer">
+                        <div>
+                            <br></br>
+                            <br></br>
+
+                            <center><p>&#169; 2015 Bases de Datos 2.</p></center>
+
+
+                        </div>
+                    </div>
+                    </body>
+
+                    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+                    <!-- Include all compiled plugins (below), or include individual files as needed -->
+                    <script src="public/js/bootstrap.min.js"></script> 
+                    </html>

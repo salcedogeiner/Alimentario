@@ -43,7 +43,7 @@ include '../logica/ControlSolicitud.php';
                 <?php 
                 //$soli=new Solicitud();
                 foreach($cSolicitud->verSolicitudes() as $soli){
-                   echo '<tr><th>'.$soli->getId_convocatoria().'</th><th>'.$soli->getCodigo_estudiante().'</th><th>'.ociloadlob($soli->getSoportes_solicitud()).'</th></tr>';
+                   echo '<tr><th>'.$soli->getId_convocatoria().'</th><th>'.$soli->getCodigo_estudiante().'</th><th><a href="C:\Users\ANDREY\Documents\archivos/'.$soli->getSoportes_solicitud().'">'.$soli->getSoportes_solicitud().'</a></th></tr>';
                 }
                 ?>
             </tbody>

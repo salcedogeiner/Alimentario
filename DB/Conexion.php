@@ -67,7 +67,7 @@
                 
                 self::$sMensaje = "ERROR: No se puede conectar a la base de datos..!<br/>";
             }
-            echo self::$sMensaje;
+            //echo self::$sMensaje;
             return $this->_oLinkId;
         }
  

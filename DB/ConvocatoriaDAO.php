@@ -25,7 +25,7 @@ class ConvocatoriaDAO{
             //echo $convocatoria->getId_facultad()."noadsno";
              $sqltxt="insert into s_convocatoria values(id_convocatoria.nextval,".$convocatoria->getId_facultad().",TO_DATE('".$convocatoria->getFecha_inicio()."','yyyy-mm-dd'),TO_DATE('".
             $convocatoria->getFecha_fin()."','yyyy,mm,dd'),".$convocatoria->getCupos().",'".$convocatoria->getPeriodo()."')";
-             echo $sqltxt;
+             //echo $sqltxt;
             $stid = oci_parse($_SESSION['sesion_logueado'],$sqltxt);
             oci_execute($stid); 
     }

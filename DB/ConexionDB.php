@@ -34,7 +34,7 @@ class ConexionDB {
             //echo $m['message'], "n";
             return FALSE;
         } else {
-            echo 'Conexion con exito a Oracle';
+            //echo 'Conexion con exito a Oracle';
             return TRUE;
         }
 // Close the Oracle connection         

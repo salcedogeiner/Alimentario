@@ -33,7 +33,7 @@ class Tipo_condicionDAO{
         $i=0;
         //$facultades=new ArrayObject($array);
         $sqltxt = "select * from s_Tipo_Condicion";
-        echo $sqltxt;
+        //echo $sqltxt;
         $stid = oci_parse($_SESSION['sesion_logueado'], $sqltxt);
         oci_execute($stid);
         while(oci_fetch_array($stid)) {
